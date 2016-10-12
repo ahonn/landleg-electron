@@ -1,0 +1,14 @@
+{
+  "name": "landleg-electron",
+  "version": "0.0.0",
+  "description": "An electron-vue project",
+  "main": "electron.js",
+  "dependencies": {
+    "vue": "^1.0.28",
+    "vue-electron": "^1.0.0",
+    "vue-resource": "^1.0.3",
+    "vue-router": "^0.7.13"
+  },
+  "devDependencies": {},
+  "author": "ahonn <ahonn95@outlook.com>"
+}
