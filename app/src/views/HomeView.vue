@@ -1,34 +1,92 @@
 <template>
-  <header class="landleg-header">
-    <h2 class="landleg-logo">Land Leg</h2>
-  </header>
-  <landleg-form></landleg-form>
+  <landleg-header></landleg-header>
+  <landleg-form :login="login" :logout="logout" :logining="logining" :result="result"></landleg-form>
   <landleg-footer></landleg-footer>
 </template>
 
 <script>
-import LandlegForm from '../components/Form.vue'
-import LandlegFooter from '../components/Footer.vue'
-
+  import LandlegHeader from '../components/Header.vue';
+  import LandlegForm from '../components/Form.vue';
+  import LandlegFooter from '../components/Footer.vue';
+  
+  import Landleg from '../lib/landleg.js';
+  
   export default {
+    data() {
+      return {
+        logining: true,
+        result: "Login Result",
+        username: "",
+        password: "",
+        ip: "10.3.62.104",
+        mac: "00:e0:4c:36:02:30"
+      }
+    },
+    methods: {
+      login() {
+        const options = {
+          username: this.username,
+          password: this.password,
+          ip: this.ip,
+          mac: this.mac
+        };
+
+        Landleg.active(options, (json) => {
+          console.log(json);
+          if (json.rescode === '0') {
+            this.logining = false;
+            setTimeout(this.login, 60000);
+          } else {
+            Landleg.login(options, (json) => {
+              console.log(json);
+              switch(json.rescode) {
+                case '0':
+                  this.logining = false;
+                  this.result = '登录成功';
+                  setTimeout(this.login, 60000);
+                  break;
+                case '13012000':
+                  this.logining = false;
+                  this.result = '密码错误';
+                  break;
+                default: 
+                  this.logining = true;
+              }
+            })
+          }
+        });
+      },
+      logout() {
+        const options = {
+          username: this.username,
+          password: this.password,
+          ip: this.ip,
+          mac: this.mac
+        };
+
+        Landleg.active(options, (json) => {
+          console.log(json);
+          if (json.rescode === '0') {
+            Landleg.logout(options, (json) => {
+              console.log(json);
+              if (json.rescode === '0') {
+                this.logining = !this.logining
+              }
+            })
+          }
+        })
+      }
+    },
+    events: {
+        'form-change': function (username, password) {
+          this.username = username;
+          this.password = password;
+        }
+    },
     components: {
+      "landleg-header": LandlegHeader,
       "landleg-form": LandlegForm,
       "landleg-footer": LandlegFooter
     }
   }
 </script>
-
-<style>
-  .landleg-header {
-    width: 100%;
-    padding-top: 40px;
-    margin-bottom: 30px;
-    box-sizing: border-box;
-  }
-
-  .landleg-logo {
-    font-size: 44px;
-    font-weight: 200;
-    color: #4F9AD7;
-  }
-</style>>

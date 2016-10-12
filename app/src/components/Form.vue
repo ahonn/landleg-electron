@@ -12,11 +12,11 @@
       <div v-else class="form-wrapper">
         <div class="form-grounp">
           <label for="user" class="form-label">账号</label>
-          <input type="text" class="form-input" id="username" v-model="username" :disabled="isLogin"/>
+          <input type="text" class="form-input" id="username" v-model="username" @change="onInput" :disabled="isLogin"/>
         </div>
         <div class="form-grounpt">
           <label for="user" class="form-label">密码</label>
-          <input type="password" class="form-input" id="password" v-model="password" :disabled="isLogin"/>
+          <input type="password" class="form-input" id="password" v-model="password" @change="onInput" :disabled="isLogin"/>
         </div>
       </div>
       <button class="{{ button.class }} button" @click="toggle" v-text="button.text"></button>
@@ -27,25 +27,23 @@
 <script>
   import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 
-  import Landleg from '../lib/landleg.js';
-
   export default {
+    props: ['login', 'logout', "logining", "result"],
     data() {
       return {
+        username: "",
+        password: "",
         isLogin: false,
-        logining: true,
-        result: "",
         button: {
           text: "登录",
           class: "login-button"
-        },
-        username: "",
-        password: "",
-        ip: "10.3.206.0",
-        mac: "ac:bc:32:c1:3e:b3"
+        }
       }
     },
     methods: {
+      onInput: function () {
+        this.$dispatch('form-change', this.username, this.password);
+      },
       toggle: function () {
         this.isLogin = !this.isLogin;
         if (this.isLogin) {
@@ -61,55 +59,6 @@
             class: "login-button"
           };
         }
-      },
-      login() {
-        const options = {
-          username: this.username,
-          password: this.password,
-          ip: this.ip,
-          mac: this.mac
-        };
-
-        Landleg.active(options, (json) => {
-          console.log(json);
-          if (json.rescode === '0') {
-            this.logining = false;
-          } else {
-            Landleg.login(options, (json) => {
-              console.log(json);
-              switch(json.rescode) {
-                case '0':
-                  this.logining = false;
-                  this.result = '登录成功';
-                  break;
-                case '13012000':
-                  this.logining = false;
-                  this.result = '密码错误';
-                  break;
-              }
-            })
-          }
-        });
-      },
-      logout() {
-        const options = {
-          username: this.username,
-          password: this.password,
-          ip: this.ip,
-          mac: this.mac
-        };
-
-        Landleg.active(options, (json) => {
-          console.log(json);
-          if (json.rescode === '0') {
-            Landleg.logout(options, (json) => {
-              console.log(json);
-              if (json.rescode === '0') {
-                this.logining = !this.logining
-              }
-            })
-          }
-        })
       }
     },
     components: {
@@ -149,7 +98,7 @@
   }
 
   .form-wrapper .form-input {
-    width: 180px;
+    width: 200px;
     height: 26px;
     font-size: 14px;
     border: 0;
@@ -170,7 +119,7 @@
   }
 
   .button {
-    width: 230px;
+    width: 240px;
     height: 32px;
     font-size: 14px;
     font-weight: 200;
