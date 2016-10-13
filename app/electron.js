@@ -25,7 +25,7 @@ function createWindow () {
     width: 300,
     // resizable: false,
     maximizable: false,
-    devTools: false
+    devTools: true
   })
 
   mainWindow.loadURL(config.url)

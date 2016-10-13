@@ -4,6 +4,8 @@
     <ul class="about-list">
       <li class="list-item">
         <h2>关于</h2>
+        <p>软件版本：v0.0.0</p>
+        <p>项目地址：<a href="">landleg-electron</a></p>
         <p>
           基于 <a href="https://cn.vuejs.org/">Vue.js</a> + <a href="electron.atom.io/">Electron</a> 的伪天翼拨号应用
         </p>
@@ -11,10 +13,10 @@
           参考自 <a href="https://github.com/xfkencon">xfkencon</a> 的 <a href="https://github.com/xfkencon/land-leg-PY">land-leg-PY</a>
         </p>
       </li>
-      <li class="list-item">
+<!--       <li class="list-item">
         <h2>项目地址</h2>
         <a href="">landleg-electron</a>
-      </li>
+      </li> -->
       <li class="list-item">
         <h2>联系方式</h2>
         <p>Blog: <a href="http://www.ahonn.me">ahonn</a></p>
@@ -51,7 +53,8 @@
   }
 
   h2 {
-    font-size: 18px;
+    margin-bottom: 5px;
+    font-size: 16px;
     font-weight: 200;
   }
 

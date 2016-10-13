@@ -27,8 +27,12 @@
     ready() {
       this.username = localStorage.username;
       this.password = localStorage.password;
-      this.ip = localStorage.ip;
-      this.mac = localStorage.mac;
+      this.ip = Landleg.getClientIP();
+      this.mac = Landleg.getClientMAC();
+      if (localStorage.model === "manual") {
+        this.ip = localStorage.ip;
+        this.mac = localStorage.mac;
+      }
     },
     methods: {
       login() {
