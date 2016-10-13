@@ -25,5 +25,6 @@
     width: 300px;
     text-align: center;
     font-family: Lato, Helvetica, sans-serif;
+    overflow: hidden;
   }
 </style>
