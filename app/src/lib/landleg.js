@@ -1,3 +1,4 @@
+import os from 'os';
 import md5 from 'md5';
 import fetch from 'node-fetch';
 
@@ -7,6 +8,28 @@ const ACTIVE_URL = 'http://enet.10000.gd.cn:8001/hbservice/client/active?';
 const SECRET = 'Eshore!@#';
 const WIFI = '4060';
 const NASIP = '219.128.230.1';
+
+function getClient(type) {
+  var ip, mac;
+  var ifaces = os.networkInterfaces();
+  Object.keys(ifaces).forEach(function (ifname) {
+    ifaces[ifname].forEach(function (iface) {
+      if (iface.family === 'IPv4' && iface.address.split('.')[0] == '10' && !ip) {
+        ip = iface.address;
+        mac = iface.mac;
+      }
+    });
+  });
+  return type === 'ip' ? ip : mac;
+}
+
+exports.getClientIP = function () {
+  return getClient('ip');
+};
+
+exports.getClientMAC = function () {
+  return getClient('mac');
+}
 
 exports.active = function (options, callback) {
   const timestamp = (new Date()).getTime();
@@ -76,3 +99,4 @@ exports.logout = function (options, callback) {
       callback(json);
     });
 };
+

@@ -31,14 +31,18 @@
     props: ['login', 'logout', "logining", "result"],
     data() {
       return {
-        username: "",
-        password: "",
+        username: null,
+        password: null,
         isLogin: false,
         button: {
           text: "登录",
           class: "login-button"
         }
       }
+    },
+    ready() {
+      this.username = localStorage.username;
+      this.password = localStorage.password;
     },
     methods: {
       onInput: function () {

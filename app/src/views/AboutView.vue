@@ -64,7 +64,7 @@
     text-decoration: none;
   }
 
-  .back-button {
+  .landleg-about .back-button {
     width: 100%;
     height: 32px;
     margin-top: 10px;

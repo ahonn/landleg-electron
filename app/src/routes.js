@@ -8,5 +8,9 @@ export default {
   '/about': {
     component: Vue.component('landing-page', require('./views/AboutView')),
     name: 'about'
+  },
+  '/setting': {
+    component: Vue.component('landing-page', require('./views/SettingView')),
+    name: 'setting'
   }
 }

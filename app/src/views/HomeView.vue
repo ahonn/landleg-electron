@@ -1,7 +1,7 @@
 <template>
   <landleg-header></landleg-header>
   <landleg-form :login="login" :logout="logout" :logining="logining" :result="result"></landleg-form>
-  <landleg-footer></landleg-footer>
+  <landleg-footer :show-footer="showFooter"></landleg-footer>
 </template>
 
 <script>
@@ -14,17 +14,25 @@
   export default {
     data() {
       return {
-        logining: true,
+        showFooter: true,
+        logining: false,
         result: "登录成功",
         timer: null,
-        username: "",
-        password: "",
-        ip: "10.3.202.75",
-        mac: "ac:bc:32:c1:3e:b3"
+        username: null,
+        password: null,
+        ip: null,
+        mac: null
       }
+    },
+    ready() {
+      this.username = localStorage.username;
+      this.password = localStorage.password;
+      this.ip = localStorage.ip;
+      this.mac = localStorage.mac;
     },
     methods: {
       login() {
+        this.showFooter = false;
         const options = {
           username: this.username,
           password: this.password,
@@ -32,10 +40,11 @@
           mac: this.mac
         };
 
+        console.log(options);
         Landleg.active(options, (json) => {
           console.log(json);
           if (json.rescode === '0') {
-            this.logining = false;
+            this.logining  = false;
             this.timer = setTimeout(this.login, 120000);
           } else {
             Landleg.login(options, (json) => {
@@ -58,6 +67,7 @@
         });
       },
       logout() {
+        this.showFooter = true;
         const options = {
           username: this.username,
           password: this.password,
@@ -80,10 +90,10 @@
       }
     },
     events: {
-        'form-change': function (username, password) {
-          this.username = username;
-          this.password = password;
-        }
+      'form-change': function (username, password) {
+        this.username = localStorage.username = username;
+        this.password = localStorage.password = password;
+      }
     },
     components: {
       "landleg-header": LandlegHeader,
