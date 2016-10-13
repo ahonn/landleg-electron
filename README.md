@@ -2,6 +2,8 @@
 
 > 地腿 electron 版本
 
+![](http://ww2.sinaimg.cn/large/006y8lVagw1f8quctu0lmj303k03kglj.jpg)
+
 基于 [Vue.js](https://cn.vuejs.org/) + [Electron]() + [landleg-node](https://github.com/ahonn/landleg-node) 的伪天翼拨号应用
 
 ## 功能
