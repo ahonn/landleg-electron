@@ -3,7 +3,7 @@
     <form @submit.prevent>
       <div v-if="isLogin" class="login-wrapper">
         <div v-if="logining" class="logining">
-          <pulse-loader :loading="true" :color="'#4F9AD7'"></pulse-loader>
+          <pacman-loader :loading="true" :color="'#4F9AD7'"></pacman-loader>
         </div>
         <div v-else>
           <span class="login-text" v-text="result"></span>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-  import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
+  import PacmanLoader from 'vue-spinner/src/PacmanLoader.vue';
 
   export default {
     props: ['login', 'logout', "logining", "result"],
@@ -62,14 +62,14 @@
       }
     },
     components: {
-      PulseLoader
+      PacmanLoader
     }
   }
 </script>
 
 <style>
   .landleg-form {
-    padding: 5px;
+    padding: 20px 5px;
   }
 
   .login-wrapper {
@@ -79,6 +79,7 @@
   .login-wrapper .logining {
     height: 64px;
     padding: 20px 0;
+    margin-left: 90px;
     box-sizing: border-box;
   }
 

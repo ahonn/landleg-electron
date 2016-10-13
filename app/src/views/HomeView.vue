@@ -15,11 +15,12 @@
     data() {
       return {
         logining: true,
-        result: "Login Result",
+        result: "登录成功",
+        timer: null,
         username: "",
         password: "",
-        ip: "10.3.62.104",
-        mac: "00:e0:4c:36:02:30"
+        ip: "10.3.202.75",
+        mac: "ac:bc:32:c1:3e:b3"
       }
     },
     methods: {
@@ -35,7 +36,7 @@
           console.log(json);
           if (json.rescode === '0') {
             this.logining = false;
-            setTimeout(this.login, 60000);
+            this.timer = setTimeout(this.login, 120000);
           } else {
             Landleg.login(options, (json) => {
               console.log(json);
@@ -43,7 +44,7 @@
                 case '0':
                   this.logining = false;
                   this.result = '登录成功';
-                  setTimeout(this.login, 60000);
+                  this.timer = setTimeout(this.login, 120000);
                   break;
                 case '13012000':
                   this.logining = false;
@@ -66,6 +67,7 @@
 
         Landleg.active(options, (json) => {
           console.log(json);
+          clearTimeout(this.timer);
           if (json.rescode === '0') {
             Landleg.logout(options, (json) => {
               console.log(json);
