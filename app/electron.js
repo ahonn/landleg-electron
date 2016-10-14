@@ -1,7 +1,7 @@
 'use strict'
 
 const electron = require('electron')
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Menu, Tray } = require('electron')
 const path = require('path')
 
 let mainWindow
@@ -26,6 +26,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     height: height,
     width: width,
+    closable: false,
     // resizable: false,
     maximizable: false,
     devTools: true
@@ -43,20 +44,37 @@ function createWindow () {
       .catch((err) => console.log('An error occurred: ', err))
   }
 
-  mainWindow.on('closed', () => {
-    mainWindow = null
+  mainWindow.on('close', () => {
+    mainWindow.hide()
   })
 
   console.log('mainWindow opened')
 }
 
+function showWindow() {
+  mainWindow.show()
+}
+
+function closeHandle() {
+  app.quit()
+}
+
 app.on('ready', () => {
   createWindow()
+
+  let tray
+  tray = new Tray(__dirname + '/icons/icon_black.png')
+  tray.setToolTip('miaoLian.in')
+  const menu = Menu.buildFromTemplate([  
+    { label: '显示窗口', click: showWindow },
+    { label: '退出',  click: closeHandle }
+  ])
+  tray.setContextMenu(menu)
 })
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    // app.quit()
+    app.quit()
   }
 })
 
