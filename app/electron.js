@@ -47,11 +47,19 @@ function createWindow () {
     mainWindow = null
   })
 
+  mainWindow.on('minimize', () => {
+    mainWindow.hide()
+  })
+
   console.log('mainWindow opened')
 }
 
-function showWindow() {
-  mainWindow.show()
+function toggleWindow() {
+  if (mainWindow.isVisible()){
+    mainWindow.hide()
+  } else {
+    mainWindow.show()
+  }
 }
 
 function closeHandle() {
@@ -63,14 +71,17 @@ app.on('ready', () => {
   createWindow()
 
   let tray
-  tray = new Tray(path.join(__dirname, '/icons/icon_black.png'))
-  tray.setToolTip('miaoLian.in')
+  if (process.platform === 'win32') {
+    tray = new Tray(path.join(__dirname, '/icons/icon_white.png'))
+  } else {
+    tray = new Tray(path.join(__dirname, '/icons/icon_black.png'))
+  }
+  tray.setToolTip('Landleg')
   const menu = Menu.buildFromTemplate([  
-    { label: '显示窗口', click: showWindow },
     { label: '退出',  click: closeHandle }
   ])
   tray.setContextMenu(menu)
-  tray.on('click', showWindow)
+  tray.on('click', toggleWindow)
 })
 
 app.on('window-all-closed', () => {
