@@ -28,31 +28,3 @@
     }
   }
 </script>
-
-<style>
-  .landleg-footer {
-    width: 100%;
-    height: 32px;
-    position: fixed;
-    bottom: 0;
-    background-color: #f0f0f0;
-  }
-
-  .footer-list {
-    list-style: none;
-  }
-
-  .footer-list li {
-    width: 50%;
-    float: left;
-    font-size: 14px;
-    font-weight: 200;
-    line-height: 32px;
-  }
-
-  .footer-list .list-item a {
-    color: #ababab;
-    text-decoration: none;
-    cursor: default;
-  }
-</style>>

@@ -2,8 +2,7 @@
 
 const electron = require('electron')
 const path = require('path')
-const app = electron.app
-const BrowserWindow = electron.BrowserWindow
+const { app, BrowserWindow } = require('electron')
 
 let mainWindow
 let config = {}
@@ -23,7 +22,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     height: 400,
     width: 300,
-    resizable: false,
+    // resizable: false,
     maximizable: false,
     devTools: true
   })
@@ -47,11 +46,13 @@ function createWindow () {
   console.log('mainWindow opened')
 }
 
-app.on('ready', createWindow)
+app.on('ready', () => {
+  createWindow()
+})
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    app.quit()
+    // app.quit()
   }
 })
 

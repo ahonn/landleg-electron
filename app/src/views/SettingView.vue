@@ -41,7 +41,7 @@
 </template>
 
 <script>
-  import Landleg from '../lib/landleg.js';
+  import Landleg from '../lib/landleg.js'
 
   export default {
     data() {
@@ -52,98 +52,30 @@
       }
     },
     ready() {
-      this.model = localStorage.model;
-      console.log(this.model);
+      this.model = localStorage.model
+      console.log(this.model)
 
       if (this.model === "auto") {
-        this.ip = localStorage.ip = Landleg.getClientIP();
-        this.mac = localStorage.mac = Landleg.getClientMAC();
+        this.ip = localStorage.ip = Landleg.getClientIP()
+        this.mac = localStorage.mac = Landleg.getClientMAC()
       } else {
-        this.ip = localStorage.ip;
-        this.mac = localStorage.mac;
+        this.ip = localStorage.ip
+        this.mac = localStorage.mac
       }
     },
     methods: {
       save: function () {
-        localStorage.model = this.model;
+        localStorage.model = this.model
 
         if (this.model === "auto") {
-          this.ip = localStorage.ip = Landleg.getClientIP();
-          this.mac = localStorage.mac = Landleg.getClientMAC();
+          this.ip = localStorage.ip = Landleg.getClientIP()
+          this.mac = localStorage.mac = Landleg.getClientMAC()
         } else {
-          localStorage.ip = this.ip;
-          localStorage.mac = this.mac;
+          localStorage.ip = this.ip
+          localStorage.mac = this.mac
         }
-        console.log(localStorage);
+        console.log(localStorage)
       }
     }
   }
 </script>
-
-<style>
-  .landleg-setting {
-    padding: 40px 30px;
-    text-align: left;
-  }
-
-  .landleg-setting .setting-title {
-    font-size: 16px;
-    line-height: 30px;
-    margin-bottom: 5px;
-  }
-
-  .landleg-setting .setting-redio {
-    margin-bottom: 5px;
-    font-size:  14px;
-  }
-
-  .landleg-setting .setting-redio label {
-    margin-right: 5px;
-  }
-
-  .landleg-setting .setting-body {
-    font-size: 16px;
-  }
-
-  .landleg-setting .setting-body .ip-name,
-  .landleg-setting .setting-body .mac-name {
-    display: inline-block;
-    width: 40px;
-    margin-right: 5px;
-    text-align: right;
-  }
-
-  .setting-body input {
-    font-size: 14px;
-    border: 0;
-    outline: 0;
-    border-bottom: 1px solid #bbb;
-  }
-
-  .landleg-setting .button-group {
-    position: absolute;
-    bottom: 40px;
-  }
-
-  .landleg-setting .save-button,
-  .landleg-setting .back-button {
-    width: 240px;
-    height: 32px;
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: 200;
-    outline: 0;
-  }
-
-  .landleg-setting .save-button {
-    color: #fff;
-    background-color: #4F9AD7;
-    border: 1px solid #4F9AD7;
-  }
-
-  .landleg-setting .back-button {
-    color: #4F9AD7;
-    background-color: #fff;
-    border: 1px solid #4F9AD7;
-  }
-</style>

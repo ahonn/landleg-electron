@@ -5,11 +5,11 @@
 </template>
 
 <script>
-  import LandlegHeader from '../components/Header.vue';
-  import LandlegForm from '../components/Form.vue';
-  import LandlegFooter from '../components/Footer.vue';
+  import LandlegHeader from '../components/Header.vue'
+  import LandlegForm from '../components/Form.vue'
+  import LandlegFooter from '../components/Footer.vue'
   
-  import Landleg from '../lib/landleg.js';
+  import Landleg from '../lib/landleg.js'
   
   export default {
     data() {
@@ -25,66 +25,66 @@
       }
     },
     ready() {
-      this.username = localStorage.username;
-      this.password = localStorage.password;
-      this.ip = Landleg.getClientIP();
-      this.mac = Landleg.getClientMAC();
+      this.username = localStorage.username
+      this.password = localStorage.password
+      this.ip = Landleg.getClientIP()
+      this.mac = Landleg.getClientMAC()
       if (localStorage.model === "manual") {
-        this.ip = localStorage.ip;
-        this.mac = localStorage.mac;
+        this.ip = localStorage.ip
+        this.mac = localStorage.mac
       }
     },
     methods: {
       login() {
-        this.showFooter = false;
+        this.showFooter = false
         const options = {
           username: this.username,
           password: this.password,
           ip: this.ip,
           mac: this.mac
-        };
+        }
 
-        console.log(options);
+        console.log(options)
         Landleg.active(options, (json) => {
-          console.log(json);
+          console.log(json)
           if (json.rescode === '0') {
-            this.logining  = false;
-            this.timer = setTimeout(this.login, 120000);
+            this.logining  = false
+            this.timer = setTimeout(this.login, 120000)
           } else {
             Landleg.login(options, (json) => {
-              console.log(json);
+              console.log(json)
               switch(json.rescode) {
                 case '0':
-                  this.logining = false;
-                  this.result = '登录成功';
-                  this.timer = setTimeout(this.login, 120000);
-                  break;
+                  this.logining = false
+                  this.result = '登录成功'
+                  this.timer = setTimeout(this.login, 120000)
+                  break
                 case '13012000':
-                  this.logining = false;
-                  this.result = '密码错误';
-                  break;
+                  this.logining = false
+                  this.result = '密码错误'
+                  break
                 default: 
-                  this.logining = true;
+                  this.logining = true
               }
             })
           }
-        });
+        })
       },
       logout() {
-        this.showFooter = true;
+        this.showFooter = true
         const options = {
           username: this.username,
           password: this.password,
           ip: this.ip,
           mac: this.mac
-        };
+        }
 
         Landleg.active(options, (json) => {
-          console.log(json);
-          clearTimeout(this.timer);
+          console.log(json)
+          clearTimeout(this.timer)
           if (json.rescode === '0') {
             Landleg.logout(options, (json) => {
-              console.log(json);
+              console.log(json)
               if (json.rescode === '0') {
                 this.logining = !this.logining
               }
@@ -95,8 +95,8 @@
     },
     events: {
       'form-change': function (username, password) {
-        this.username = localStorage.username = username;
-        this.password = localStorage.password = password;
+        this.username = localStorage.username = username
+        this.password = localStorage.password = password
       }
     },
     components: {

@@ -1,0 +1,233 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    width: 300px;
+    text-align: center;
+    font-family: Lato, Helvetica, sans-serif;
+    overflow: hidden;
+}
+
+.landleg-about {
+    padding: 0 30px;
+    text-align: left;
+}
+
+.landleg-about .about-list {
+    list-style: none;
+}
+
+.about-list .list-item {
+    margin-bottom: 10px;
+}
+
+h2 {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 200;
+}
+
+p {
+    font-size: 13px;
+}
+
+a {
+    color: #4F9AD7;
+    text-decoration: none;
+}
+
+.landleg-about .back-button {
+    width: 100%;
+    height: 32px;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 200;
+    color: #4F9AD7;
+    background-color: #fff;
+    border: 1px solid #4F9AD7;
+    outline: 0;
+}
+
+.landleg-setting {
+    padding: 40px 30px;
+    text-align: left;
+}
+
+.landleg-setting .setting-title {
+    font-size: 16px;
+    line-height: 30px;
+    margin-bottom: 5px;
+}
+
+.landleg-setting .setting-redio {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.landleg-setting .setting-redio label {
+    margin-right: 5px;
+}
+
+.landleg-setting .setting-body {
+    font-size: 16px;
+}
+
+.landleg-setting .setting-body .ip-name,
+.landleg-setting .setting-body .mac-name {
+    display: inline-block;
+    width: 40px;
+    margin-right: 5px;
+    text-align: right;
+}
+
+.setting-body input {
+    font-size: 14px;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #bbb;
+}
+
+.landleg-setting .button-group {
+    position: absolute;
+    bottom: 40px;
+}
+
+.landleg-setting .save-button,
+.landleg-setting .back-button {
+    width: 240px;
+    height: 32px;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 200;
+    outline: 0;
+}
+
+.landleg-setting .save-button {
+    color: #fff;
+    background-color: #4F9AD7;
+    border: 1px solid #4F9AD7;
+}
+
+.landleg-setting .back-button {
+    color: #4F9AD7;
+    background-color: #fff;
+    border: 1px solid #4F9AD7;
+}
+
+.landleg-header {
+    width: 100%;
+    padding-top: 30px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.landleg-logo {
+    font-size: 44px;
+    font-weight: 200;
+    color: #4F9AD7;
+}
+
+.landleg-form {
+    padding: 20px 5px;
+}
+
+.login-wrapper {
+    margin-bottom: 30px;
+}
+
+.login-wrapper .logining {
+    height: 64px;
+    padding: 20px 0;
+    margin-left: 90px;
+    box-sizing: border-box;
+}
+
+.login-wrapper .login-text {
+    font-size: 38px;
+    line-height: 64px;
+    font-weight: 200;
+    color: #878787;
+}
+
+.form-wrapper {
+    margin-bottom: 30px;
+}
+
+.form-wrapper .form-grounp {
+    margin-bottom: 10px;
+}
+
+.form-wrapper .form-input {
+    width: 200px;
+    height: 26px;
+    font-size: 14px;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #DBDBDB;
+}
+
+.form-wrapper .form-input:focus {
+    border-bottom: 1px solid #4F9AD7;
+}
+
+.form-wrapper .form-label {
+    position: relative;
+    top: 2px;
+    margin-right: 10px;
+    font-size: 14px;
+    font-weight: 200;
+}
+
+.button {
+    width: 240px;
+    height: 32px;
+    font-size: 14px;
+    font-weight: 200;
+}
+
+.login-button {
+    color: #fff;
+    background-color: #4F9AD7;
+    border: 1px solid #4F9AD7;
+    outline: 0;
+}
+
+.logout-button {
+    color: #4F9AD7;
+    background-color: #fff;
+    border: 1px solid #4F9AD7;
+    outline: 0;
+}
+
+.landleg-footer {
+    width: 100%;
+    height: 32px;
+    position: fixed;
+    bottom: 0;
+    background-color: #f0f0f0;
+}
+
+.footer-list {
+    list-style: none;
+}
+
+.footer-list li {
+    width: 50%;
+    float: left;
+    font-size: 14px;
+    font-weight: 200;
+    line-height: 32px;
+}
+
+.footer-list .list-item a {
+    color: #ababab;
+    text-decoration: none;
+    cursor: default;
+}
