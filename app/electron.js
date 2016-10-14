@@ -63,7 +63,7 @@ app.on('ready', () => {
   createWindow()
 
   let tray
-  tray = new Tray(__dirname + '/icons/icon_black.png')
+  tray = new Tray(path.join(__dirname, '/icons/icon_black.png'))
   tray.setToolTip('miaoLian.in')
   const menu = Menu.buildFromTemplate([  
     { label: '显示窗口', click: showWindow },
