@@ -1,7 +1,7 @@
 'use strict'
 
 const electron = require('electron')
-const { app, BrowserWindow, Menu, Tray } = require('electron')
+const { app, BrowserWindow, Menu, Tray, nativeImage } = require('electron')
 const path = require('path')
 
 let mainWindow
@@ -47,37 +47,39 @@ function createWindow () {
     mainWindow = null
   })
 
-  // mainWindow.on('minimize', () => {
-  //   mainWindow.hide()
-  // })
+  mainWindow.on('minimize', () => {
+    mainWindow.hide()
+  })
 
   console.log('mainWindow opened')
 }
 
-// function toggleWindow() {
-//   if (mainWindow.isVisible()){
-//     mainWindow.hide()
-//   } else {
-//     mainWindow.show()
-//   }
-// }
+function toggleWindow() {
+  if (mainWindow.isVisible()){
+    mainWindow.hide()
+  } else {
+    mainWindow.show()
+  }
+}
 
-// function closeHandle() {
-//   // mainWindow = null
-//   app.quit()
-// }
+function closeHandle() {
+  // mainWindow = null
+  app.quit()
+}
 
 app.on('ready', () => {
   createWindow()
 
-  // let tray
-  // tray = new Tray(path.join(__dirname, '/icons/icon_white.png'))
-  // tray.setToolTip('Landleg')
-  // const menu = Menu.buildFromTemplate([  
-  //   { label: '退出',  click: closeHandle }
-  // ])
-  // tray.setContextMenu(menu)
-  // tray.on('click', toggleWindow)
+  if (process.platform === 'win32') {
+    let image = nativeImage.createFromPath(path.join(__dirname, 'icons', 'icon_16x16@2x.png'))
+    let tray = new Tray(image)
+    tray.setToolTip('Landleg')
+    const menu = Menu.buildFromTemplate([  
+      { label: '退出',  click: closeHandle }
+    ])
+    tray.setContextMenu(menu)
+    tray.on('click', toggleWindow)
+  }
 })
 
 app.on('window-all-closed', () => {
