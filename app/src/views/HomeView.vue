@@ -1,7 +1,7 @@
 <template>
   <landleg-header></landleg-header>
   <landleg-form :login="login" :logout="logout" :logining="logining" :result="result"></landleg-form>
-  <span class="resinfo" v-text="resinfo.replace('（Huawei）', '')"></span>
+  <span class="resinfo" v-if="resinfo !== null" v-text="resinfo.replace('（Huawei）', '')"></span>
   <landleg-footer :show-footer="showFooter"></landleg-footer>
 </template>
 

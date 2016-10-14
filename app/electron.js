@@ -26,7 +26,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     height: height,
     width: width,
-    // resizable: false,
+    resizable: false,
     maximizable: false,
     devTools: true
   })
@@ -47,25 +47,25 @@ function createWindow () {
     mainWindow = null
   })
 
-  mainWindow.on('minimize', () => {
-    mainWindow.hide()
-  })
+  // mainWindow.on('minimize', () => {
+  //   mainWindow.hide()
+  // })
 
   console.log('mainWindow opened')
 }
 
-function toggleWindow() {
-  if (mainWindow.isVisible()){
-    mainWindow.hide()
-  } else {
-    mainWindow.show()
-  }
-}
+// function toggleWindow() {
+//   if (mainWindow.isVisible()){
+//     mainWindow.hide()
+//   } else {
+//     mainWindow.show()
+//   }
+// }
 
-function closeHandle() {
-  // mainWindow = null
-  app.quit()
-}
+// function closeHandle() {
+//   // mainWindow = null
+//   app.quit()
+// }
 
 app.on('ready', () => {
   createWindow()

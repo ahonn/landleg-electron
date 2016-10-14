@@ -16,7 +16,7 @@ body {
 }
 
 .landleg-about {
-    padding: 30px;
+    padding: 20px;
 }
 
 .landleg-about-wrapper {
@@ -69,11 +69,12 @@ body {
 }
 
 .landleg-setting {
-    padding: 30px;
+    padding: 20px;
     text-align: left;
 }
 
 .landleg-setting .setting-form {
+    padding: 0 15px;
     height: 270px;
     box-sizing: border-box;
 }
@@ -119,7 +120,7 @@ body {
 
 .landleg-setting .save-button,
 .landleg-setting .back-button {
-    width: 240px;
+    width: 100%;
     height: 32px;
     margin-top: 10px;
     font-size: 14px;
