@@ -23,18 +23,18 @@
           <div class="manual" v-if="model === 'manual'">
             <div>
               <label for="ip" class="ip-name">IP:</label>
-              <input type="text" name="ip" id="ip" v-model="ip" />
+              <input type="text" name="ip" id="ip" v-model="ip" @change="save" />
             </div>
             <div>
               <label for="mac" class="mac-name">MAC:</label>
-              <input type="text" name="mac" id="mac" v-model="mac" />
+              <input type="text" name="mac" id="mac" v-model="mac" @change="save" />
             </div>
           </div>
         </div>
       </div>
     </form>
     <div class="button-group">
-      <button class="save-button" v-if="model === 'manual'" @click="save">保存</button>
+      <!-- <button class="save-button" v-if="model === 'manual'" @click="save">保存</button> -->
       <button class="back-button" v-link="{ name: 'home' }">返回</button>
     </div>
   </div>

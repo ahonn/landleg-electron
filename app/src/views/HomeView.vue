@@ -1,6 +1,7 @@
 <template>
   <landleg-header></landleg-header>
   <landleg-form :login="login" :logout="logout" :logining="logining" :result="result"></landleg-form>
+  <span class="resinfo" v-text="resinfo.replace('（Huawei）', '')"></span>
   <landleg-footer :show-footer="showFooter"></landleg-footer>
 </template>
 
@@ -16,6 +17,7 @@
       return {
         showFooter: true,
         logining: false,
+        resinfo: null,
         result: "登录成功",
         timer: null,
         username: null,
@@ -56,15 +58,18 @@
               switch(json.rescode) {
                 case '0':
                   this.logining = false
+                  this.resinfo = null
                   this.result = '登录成功'
                   this.timer = setTimeout(this.login, 120000)
                   break
                 case '13012000':
                   this.logining = false
+                  this.resinfo = null
                   this.result = '密码错误'
                   break
                 default: 
                   this.logining = true
+                  this.resinfo = json.resinfo
               }
             })
           }
@@ -80,6 +85,7 @@
         }
 
         Landleg.active(options, (json) => {
+          this.resinfo = null
           console.log(json)
           clearTimeout(this.timer)
           if (json.rescode === '0') {
