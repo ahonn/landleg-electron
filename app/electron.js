@@ -70,18 +70,16 @@ function closeHandle() {
 app.on('ready', () => {
   createWindow()
 
-  let tray
   if (process.platform === 'win32') {
+    let tray
     tray = new Tray(path.join(__dirname, '/icons/icon_white.png'))
-  } else {
-    tray = new Tray(path.join(__dirname, '/icons/icon_black.png'))
+    tray.setToolTip('Landleg')
+    const menu = Menu.buildFromTemplate([  
+      { label: '退出',  click: closeHandle }
+    ])
+    tray.setContextMenu(menu)
+    tray.on('click', toggleWindow)
   }
-  tray.setToolTip('Landleg')
-  const menu = Menu.buildFromTemplate([  
-    { label: '退出',  click: closeHandle }
-  ])
-  tray.setContextMenu(menu)
-  tray.on('click', toggleWindow)
 })
 
 app.on('window-all-closed', () => {
