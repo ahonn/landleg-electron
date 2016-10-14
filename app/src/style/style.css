@@ -16,31 +16,44 @@ body {
 }
 
 .landleg-about {
-    padding: 0 30px;
+    padding: 30px;
+}
+
+.landleg-about-wrapper {
+    height: 300px;
+    box-sizing: border-box;
+}
+
+.landleg-about .logo-wrapper {
+    text-align: center;
+} 
+
+.landleg-about .logo-wrapper .logo {
+    font-size: 20px;
+    color: #4F9AD7;
+} 
+
+.landleg-about .logo-wrapper .version {
+    font-size: 16px;
+    color: #4F9AD7;
+} 
+
+.landleg-about .info-wrapper {
+    padding-top: 20px;
     text-align: left;
 }
 
-.landleg-about .about-list {
-    list-style: none;
-}
-
-.about-list .list-item {
-    margin-bottom: 10px;
-}
-
-h2 {
+.landleg-about .info-item {
     margin-bottom: 5px;
-    font-size: 16px;
+}
+
+.landleg-about .info-title {
+    font-size: 13px;
     font-weight: 200;
 }
 
-p {
+.landleg-about .info-content {
     font-size: 13px;
-}
-
-a {
-    color: #4F9AD7;
-    text-decoration: none;
 }
 
 .landleg-about .back-button {
@@ -56,8 +69,13 @@ a {
 }
 
 .landleg-setting {
-    padding: 40px 30px;
+    padding: 30px;
     text-align: left;
+}
+
+.landleg-setting .setting-form {
+    height: 300px;
+    box-sizing: border-box;
 }
 
 .landleg-setting .setting-title {
@@ -94,10 +112,10 @@ a {
     border-bottom: 1px solid #bbb;
 }
 
-.landleg-setting .button-group {
+/* .landleg-setting .button-group {
     position: absolute;
     bottom: 40px;
-}
+} */
 
 .landleg-setting .save-button,
 .landleg-setting .back-button {

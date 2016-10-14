@@ -1,6 +1,6 @@
 <template>
   <div class="landleg-setting">
-    <form>
+    <form class="setting-form">
       <div class="setting-item">
         <h2 class="setting-title">设置 IP 地址与 MAC 地址</h2>
         <div class="setting-redio">
