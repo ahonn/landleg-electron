@@ -44,7 +44,7 @@ function createWindow () {
   }
 
   mainWindow.on('close', () => {
-    mainWindow.hide()
+    mainWindow = null
   })
 
   console.log('mainWindow opened')
@@ -55,6 +55,7 @@ function showWindow() {
 }
 
 function closeHandle() {
+  // mainWindow = null
   app.quit()
 }
 
@@ -69,6 +70,7 @@ app.on('ready', () => {
     { label: '退出',  click: closeHandle }
   ])
   tray.setContextMenu(menu)
+  tray.on('click', showWindow)
 })
 
 app.on('window-all-closed', () => {
