@@ -1,8 +1,8 @@
 'use strict'
 
 const electron = require('electron')
-const path = require('path')
 const { app, BrowserWindow } = require('electron')
+const path = require('path')
 
 let mainWindow
 let config = {}
@@ -16,12 +16,16 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 function createWindow () {
-  /**
-   * Initial window options
-   */
+  
+  let width = 300
+  let height = 400
+  if (process.platform === 'win32') {
+    width = 320
+  }
+
   mainWindow = new BrowserWindow({
-    height: 400,
-    width: 300,
+    height: height,
+    width: width,
     // resizable: false,
     maximizable: false,
     devTools: true
