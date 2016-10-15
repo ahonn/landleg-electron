@@ -14,15 +14,15 @@
 
 ## 下载
 
-#### Windows [下载](https://pan.baidu.com/s/1nuEGDMp)
+#### Windows [下载](https://pan.baidu.com/s/1nuEGDMp#list/path=%2FLandleg%2FLandleg-Electron-Windows&parentPath=%2FLandleg)
  
 Windows 7 下存在兼容问题无法打开（没有经过完整测试），Windows 8 & Windows 10 完美运行
 
-#### MacOS [下载](https://pan.baidu.com/s/1ge4J3ov)
+#### MacOS [下载](https://pan.baidu.com/s/1ge4J3ov#list/path=%2FLandleg%2FLandleg-Electron-MacOS&parentPath=%2FLandleg)
  
 MacOS Sierra 10.12 完美运行，理论上其他版本也同样完美运行（其他版本未测试）
 
-#### Linux [下载](https://pan.baidu.com/s/1pKOfXeb)
+#### Linux [下载](https://pan.baidu.com/s/1pKOfXeb#list/path=%2FLandleg%2FLandleg-Electron-Linux&parentPath=%2FLandleg)
 
 未测试，自行折腾
 
