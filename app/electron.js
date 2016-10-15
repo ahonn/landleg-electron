@@ -47,9 +47,20 @@ function createWindow () {
     mainWindow = null
   })
 
-  // mainWindow.on('minimize', () => {
-  //   mainWindow.hide()
-  // })
+  mainWindow.on('minimize', () => {
+    mainWindow.hide()
+  })
+
+  if (process.platform === 'win32') {
+    let image = nativeImage.createFromPath(path.join(__dirname, 'icons', 'icon_16x16@2x.png'))
+    let tray = new Tray(image)
+    tray.setToolTip('Landleg')
+    const menu = Menu.buildFromTemplate([  
+      { label: '退出',  click: closeHandle }
+    ])
+    tray.setContextMenu(menu)
+    tray.on('click', toggleWindow)
+  }
 
   console.log('mainWindow opened')
 }
@@ -69,17 +80,6 @@ function closeHandle() {
 
 app.on('ready', () => {
   createWindow()
-
-  // if (process.platform === 'win32') {
-  //   let image = nativeImage.createFromPath(path.join(__dirname, 'icons', 'icon_16x16@2x.png'))
-  //   let tray = new Tray(image)
-  //   tray.setToolTip('Landleg')
-  //   const menu = Menu.buildFromTemplate([  
-  //     { label: '退出',  click: closeHandle }
-  //   ])
-  //   tray.setContextMenu(menu)
-  //   tray.on('click', toggleWindow)
-  // }
 })
 
 app.on('window-all-closed', () => {
