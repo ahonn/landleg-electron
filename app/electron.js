@@ -5,7 +5,9 @@ const { app, BrowserWindow, Menu, Tray, nativeImage } = require('electron')
 const path = require('path')
 
 let mainWindow
+let tray
 let config = {}
+let image = nativeImage.createFromPath(path.join(__dirname, 'icons', 'icon_16x16@2x.png'))
 
 if (process.env.NODE_ENV === 'development') {
   config = require('../config')
@@ -43,43 +45,42 @@ function createWindow () {
       .catch((err) => console.log('An error occurred: ', err))
   }
 
-  mainWindow.on('close', () => {
-    mainWindow = null
+  mainWindow.on('close', (e) => {
+    if (process.platform === 'win32') {
+      e.preventDefault()
+      mainWindow.hide()
+    } else {
+      mainWindow = null
+    }
   })
-
-  mainWindow.on('minimize', () => {
-    mainWindow.hide()
-  })
-
-  if (process.platform === 'win32') {
-    let image = nativeImage.createFromPath(path.join(__dirname, 'icons', 'icon_16x16@2x.png'))
-    let tray = new Tray(image)
-    tray.setToolTip('Landleg')
-    const menu = Menu.buildFromTemplate([  
-      { label: '退出',  click: closeHandle }
-    ])
-    tray.setContextMenu(menu)
-    tray.on('click', toggleWindow)
-  }
 
   console.log('mainWindow opened')
 }
 
-function toggleWindow() {
-  if (mainWindow.isVisible()){
-    mainWindow.hide()
-  } else {
-    mainWindow.show()
-  }
+function showWindow() {
+  mainWindow.show()
 }
 
 function closeHandle() {
-  // mainWindow = null
+  mainWindow.on('close', () => {
+    mainWindow = null
+    tray.destroy()
+  })
   app.quit()
 }
 
 app.on('ready', () => {
   createWindow()
+
+  if (process.platform === 'win32') {
+    tray = new Tray(image)
+    tray.setToolTip('Landleg')
+    const menu = Menu.buildFromTemplate([  
+      { label: '退出',  click: closeHandle }
+    ])
+    tray.setContextMenu(menu)
+    tray.on('click', showWindow)
+  }
 })
 
 app.on('window-all-closed', () => {
