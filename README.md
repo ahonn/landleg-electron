@@ -10,13 +10,13 @@
 - 记住账号密码
 - 自动获取 IP、MAC 
 - 可选手动设置 IP、MAC
-- Windows 平台下最小化默认缩小到状态栏
+- Windows 平台下最小化缩小到状态栏
 
 ## 下载
 
 #### Windows [下载](https://pan.baidu.com/s/1nvrWjpv)
  
-已知 Windows 7 下存在兼容问题无法打开（没有经过完整测试），Windows 8 & Windows 10 完美运行
+Windows 7 下存在兼容问题无法打开（没有经过完整测试），Windows 8 & Windows 10 完美运行
 
 #### MacOS [下载](https://pan.baidu.com/s/1gfdpvk3)
  
@@ -41,6 +41,16 @@ npm run build
 # run webpack in production
 npm run pack
 ```
+
+## 更新记录
+
+#### 2016-10-15
+- [修复] 修复 Windows 平台下缩小后状态栏图标消失的 Bug
+
+#### 2016-10-14
+- [添加] Windows 平台下最小化缩小到状态栏
+- [更新] 更新关于页面，重绘 Logo
+- [修复] 修复手动设置时点击保存按钮无反馈信息，修改为填写时自动保存，移除保存按钮
 
 ## 联系 
 Email: [ahonn95@outlook.com](mailto:ahonn95@outlook.com)
