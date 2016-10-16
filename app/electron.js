@@ -28,7 +28,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     height: height,
     width: width,
-    // resizable: false,
+    resizable: false,
     maximizable: false,
     devTools: true
   })
@@ -54,6 +54,10 @@ function createWindow () {
     }
   })
 
+  // mainWindow.on('minimize', () => {
+  //   mainWindow.hide()
+  // })
+
   console.log('mainWindow opened')
 }
 
@@ -62,10 +66,7 @@ function showWindow() {
 }
 
 function closeHandle() {
-  mainWindow.on('close', () => {
-    mainWindow = null
-    tray.destroy()
-  })
+  // mainWindow = null
   app.quit()
 }
 
