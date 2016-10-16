@@ -3,7 +3,7 @@
     <div class="landleg-about-wrapper">
       <div class="logo-wrapper">
         <img src="http://ww2.sinaimg.cn/large/006y8lVagw1f8rux8l7jzj303k03kq2s.jpg" height="128" width="128">
-        <h2 class="logo">Landleg <span class="version">v0.0.1</span></h2>
+        <h2 class="logo">Landleg <span class="version">v0.1.0</span></h2>
       </div>
       <div class="info-wrapper">
         <div class="info-item">

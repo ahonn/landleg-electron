@@ -79,6 +79,11 @@ body {
     box-sizing: border-box;
 }
 
+.landleg-setting .setting-item {
+    margin-bottom: 10px;
+    height: 100px;
+}
+
 .landleg-setting .setting-title {
     font-size: 16px;
     line-height: 30px;
@@ -92,6 +97,10 @@ body {
 
 .landleg-setting .setting-redio label {
     margin-right: 5px;
+}
+
+.landleg-setting .setting-select {
+    outline: 0;
 }
 
 .landleg-setting .setting-body {

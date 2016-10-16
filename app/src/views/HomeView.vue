@@ -11,6 +11,7 @@
   import LandlegFooter from '../components/Footer.vue'
   
   import Landleg from '../lib/landleg.js'
+  import { message, config } from '../common.js'
   
   export default {
     data() {
@@ -18,58 +19,64 @@
         showFooter: true,
         logining: false,
         resinfo: null,
-        result: "登录成功",
+        result: null,
         timer: null,
-        username: null,
-        password: null,
-        ip: null,
-        mac: null
+        data: {
+          username: null,
+          password: null,
+          ip: null,
+          mac: null,
+          school: null,
+          nasip: null,
+          icode: null
+        }
       }
     },
     ready() {
-      this.username = localStorage.username
-      this.password = localStorage.password
-      this.ip = Landleg.getClientIP()
-      this.mac = Landleg.getClientMAC()
+      this.data.username = localStorage.username
+      this.data.password = localStorage.password
+
+      // Get school config
+      if (localStorage.school === undefined) {
+        let school = config.school[0]
+        this.data.school = localStorage.school = school.name
+        this.data.nasip = localStorage.nasip = school.nasip
+        this.data.icode = localStorage.icode = school.icode
+      } else {
+        this.data.school = localStorage.school
+        this.data.nasip = localStorage.nasip
+        this.data.icode = localStorage.icode
+      }
+
+      this.data.ip = Landleg.getClientIP(this.data)
+      this.data.mac = Landleg.getClientMAC(this.data)
+
       if (localStorage.model === "manual") {
-        this.ip = localStorage.ip
-        this.mac = localStorage.mac
+        this.data.ip = localStorage.ip
+        this.data.mac = localStorage.mac
       }
     },
     methods: {
       login() {
         this.showFooter = false
-        const options = {
-          username: this.username,
-          password: this.password,
-          ip: this.ip,
-          mac: this.mac
-        }
 
-        console.log(options)
-        Landleg.active(options, (json) => {
+        console.log(this.data)
+        Landleg.active(this.data, (json) => {
           console.log(json)
           if (json.rescode === '0') {
-            this.logining  = false
-            this.timer = setTimeout(this.login, 120000)
+            this.keepActive()
           } else {
-            Landleg.login(options, (json) => {
+            Landleg.login(this.data, (json) => {
               console.log(json)
               switch(json.rescode) {
                 case '0':
-                  this.logining = false
-                  this.resinfo = null
-                  this.result = '登录成功'
-                  this.timer = setTimeout(this.login, 120000)
+                  this.loginSuccess()
                   break
                 case '13012000':
-                  this.logining = false
-                  this.resinfo = null
-                  this.result = '密码错误'
+                  this.passwordError()
                   break
                 default: 
-                  this.logining = true
-                  this.resinfo = json.resinfo
+                  this.loginError(json)
               }
             })
           }
@@ -77,19 +84,13 @@
       },
       logout() {
         this.showFooter = true
-        const options = {
-          username: this.username,
-          password: this.password,
-          ip: this.ip,
-          mac: this.mac
-        }
 
-        Landleg.active(options, (json) => {
+        Landleg.active(this.data, (json) => {
           this.resinfo = null
           console.log(json)
           clearTimeout(this.timer)
           if (json.rescode === '0') {
-            Landleg.logout(options, (json) => {
+            Landleg.logout(this.data, (json) => {
               console.log(json)
               if (json.rescode === '0') {
                 this.logining = !this.logining
@@ -97,12 +98,32 @@
             })
           }
         })
+      },
+      keepActive() {
+        this.logining  = false
+        this.result = message.keepActive
+        this.timer = setTimeout(this.login, 120000)
+      },
+      loginSuccess() {
+        this.logining = false
+        this.resinfo = null
+        this.result = message.loginSuccess
+        this.timer = setTimeout(this.login, 120000)
+      },
+      passwordError() {
+        this.logining = false
+        this.resinfo = null
+        this.result = message.passwordError
+      },
+      loginError(json) {
+        this.logining = true
+        this.resinfo = json.resinfo
       }
     },
     events: {
       'form-change': function (username, password) {
-        this.username = localStorage.username = username
-        this.password = localStorage.password = password
+        this.data.username = localStorage.username = username
+        this.data.password = localStorage.password = password
       }
     },
     components: {
