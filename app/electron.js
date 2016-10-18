@@ -28,6 +28,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     height: height,
     width: width,
+    show: false,
     resizable: false,
     maximizable: false,
     devTools: true
@@ -45,6 +46,11 @@ function createWindow () {
       .catch((err) => console.log('An error occurred: ', err))
   }
 
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show()
+    mainWindow.focus()
+  })
+
   mainWindow.on('close', (e) => {
     if (process.platform === 'win32') {
       e.preventDefault()
@@ -53,12 +59,6 @@ function createWindow () {
       mainWindow = null
     }
   })
-
-  // mainWindow.on('minimize', () => {
-  //   mainWindow.hide()
-  // })
-
-  console.log('mainWindow opened')
 }
 
 function showWindow() {
@@ -66,7 +66,8 @@ function showWindow() {
 }
 
 function closeHandle() {
-  // mainWindow = null
+  mainWindow.destroy()
+  tray.destroy()
   app.quit()
 }
 
