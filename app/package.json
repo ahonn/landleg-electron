@@ -1,6 +1,6 @@
 {
   "name": "landleg-electron",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "description": "An electron-vue project",
   "main": "electron.js",
   "dependencies": {
