@@ -17,7 +17,7 @@
     data() {
       return {
         showFooter: true,
-        logining: false,
+        logining: true,
         resinfo: null,
         result: null,
         timer: null,

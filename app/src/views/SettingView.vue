@@ -4,9 +4,9 @@
       <div class="setting-item">
         <h2 class="setting-title">设置 IP 地址与 MAC 地址</h2>
         <div class="setting-redio">
-          <input type="radio" id="auto" value="auto" v-model="model" :checkout="model === 'auto'" @change="setIpAndMac" />
+          <input type="radio" id="auto" value="auto" v-model="model" :checkout="model === 'auto'" @change="autoIpAndMac" />
           <label for="auto">自动</label>
-          <input type="radio" id="manual" value="manual" v-model="model" :checkout="model === 'manual'" />
+          <input type="radio" id="manual" value="manual" v-model="model" :checkout="model === 'manual'" @change="getManualIpAndMac"/>
           <label for="manual">手动</label>
         </div>
         <div class="setting-body">
@@ -23,11 +23,11 @@
           <div class="manual" v-if="model === 'manual'">
             <div>
               <label for="ip" class="ip-name">IP:</label>
-              <input type="text" name="ip" id="ip" v-model="ip" @change="setIpAndMac" />
+              <input type="text" name="ip" id="ip" v-model="ip" @change="manualIpAndMac" />
             </div>
             <div>
               <label for="mac" class="mac-name">MAC:</label>
-              <input type="text" name="mac" id="mac" v-model="mac" @change="setIpAndMac" />
+              <input type="text" name="mac" id="mac" v-model="mac" @change="manualIpAndMac" />
             </div>
           </div>
         </div>
@@ -74,24 +74,33 @@
       this.icode = localStorage.icode
 
       if (this.model === "auto") {
-        this.ip = Landleg.getClientIP(this)
-        this.mac = Landleg.getClientMAC(this)
+        this.ip = localStorage.ip = Landleg.getClientIP(this)
+        this.mac = localStorage.mac = Landleg.getClientMAC(this)
       } else {
-        this.ip = localStorage.ip
-        this.mac = localStorage.mac
+        this.ip = localStorage._ip
+        this.mac = localStorage._mac
       }
     },
     methods: {
-      setIpAndMac: function () {
+      autoIpAndMac: function () {
         localStorage.model = this.model
+        this.ip = localStorage.ip = Landleg.getClientIP(this)
+        this.mac = localStorage.mac = Landleg.getClientMAC(this)
 
-        if (this.model === "auto") {
-          this.ip = Landleg.getClientIP(this)
-          this.mac = Landleg.getClientMAC(this)
-        } else {
-          localStorage.ip = this.ip
-          localStorage.mac = this.mac
-        }
+        console.log(localStorage)
+      },
+      getManualIpAndMac() {
+        localStorage.model = this.model
+        this.ip = localStorage.ip = localStorage._ip
+        this.mac = localStorage.mac = localStorage._mac
+
+        console.log(localStorage)
+      },
+      manualIpAndMac: function () {
+        localStorage.model = this.model
+        localStorage.ip = localStorage._ip = this.ip
+        localStorage.mac = localStorage._mac = this.mac
+
         console.log(localStorage)
       },
       setSchool: function () {
