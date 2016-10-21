@@ -2,8 +2,8 @@
   <div class="landleg-about">
     <div class="landleg-about-wrapper">
       <div class="logo-wrapper">
-        <img src="http://ww2.sinaimg.cn/large/006y8lVagw1f8rux8l7jzj303k03kq2s.jpg" height="128" width="128">
-        <h2 class="logo">Landleg <span class="version">v0.1.1</span></h2>
+        <img src="../assets/icon.png" height="-1" width="-1">
+        <h2 class="logo">Landleg <span class="version">v0.1.2</span></h2>
       </div>
       <div class="info-wrapper">
         <div class="info-item">

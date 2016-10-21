@@ -28,7 +28,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     height: height,
     width: width,
-    show: false,
+    // show: false,
     resizable: false,
     maximizable: false,
     devTools: true
@@ -46,10 +46,10 @@ function createWindow () {
       .catch((err) => console.log('An error occurred: ', err))
   }
 
-  mainWindow.once('ready-to-show', () => {
-    mainWindow.show()
-    mainWindow.focus()
-  })
+  // mainWindow.once('ready-to-show', () => {
+  //   mainWindow.show()
+  //   mainWindow.focus()
+  // })
 
   mainWindow.on('close', (e) => {
     if (process.platform === 'win32') {
