@@ -48,7 +48,7 @@
             <input type="text" name="icode" id="icode" v-model="icode" placeholder="xxx" @change="setNasipAndIcode" />
           </div>
           <div class="tips">
-            <p>* 接入服务器即为宽带接入的 IP</p>
+            <p>* 接入服务器即为宽带接入的 IP（NASIP）</p>
             <p>* 网络识别码即为内网 IP 首位</p>
           </div>
         </div>
@@ -127,8 +127,8 @@
           this.icode = localStorage.icode = selectSchool.icode
         } else {
           this.school = localStorage.school = null
-          this.nasip = localStorage.nasip = null
-          this.icode = localStorage.icode = null
+          this.nasip = localStorage.nasip = ""
+          this.icode = localStorage.icode = ""
         }
 
         if (this.model === "auto") {

@@ -124,6 +124,7 @@ body {
 }
 
 .setting-body input {
+    width: 130px;
     font-size: 14px;
     border: 0;
     outline: 0;
@@ -132,7 +133,7 @@ body {
 
 .landleg-setting .tips {
     margin-top: 10px;
-    font-size: 11px;
+    font-size: 12px;
     color: #f00;
 }
 
