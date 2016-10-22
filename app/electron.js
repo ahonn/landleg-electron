@@ -29,7 +29,7 @@ function createWindow () {
     height: height,
     width: width,
     // show: false,
-    // resizable: false,
+    resizable: false,
     maximizable: false,
     devTools: true
   })

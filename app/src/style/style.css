@@ -100,6 +100,7 @@ body {
 }
 
 .landleg-setting .setting-select {
+    margin-bottom: 5px;
     outline: 0;
 }
 
@@ -115,6 +116,13 @@ body {
     text-align: right;
 }
 
+.landleg-setting .setting-body .nasip-name,
+.landleg-setting .setting-body .icode-name {
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 12px;
+}
+
 .setting-body input {
     font-size: 14px;
     border: 0;
@@ -122,10 +130,11 @@ body {
     border-bottom: 1px solid #bbb;
 }
 
-/* .landleg-setting .button-group {
-    position: absolute;
-    bottom: 40px;
-} */
+.landleg-setting .tips {
+    margin-top: 10px;
+    font-size: 11px;
+    color: #f00;
+}
 
 .landleg-setting .save-button,
 .landleg-setting .back-button {

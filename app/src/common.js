@@ -12,6 +12,11 @@ module.exports = {
         icode: "10"
       },
       {
+        name: "广东理工学院",
+        nasip: "119.146.99.45",
+        icode: "10"
+      },
+      {
         name: "电子科技大学中山学院",
         nasip: "61.142.108.88",
         icode: "172"

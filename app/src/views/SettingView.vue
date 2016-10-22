@@ -36,7 +36,22 @@
         <h2 class="setting-title">设置学校</h2>
         <select class="setting-select" v-model="schoolNumber" @change="setSchool">
           <option v-for="(index, item) in schoolGroup" v-text="item.name" v-bind:value="index"></option>
+          <option value="-1">其他</option>
         </select>
+        <div class="setting-body" v-if="schoolNumber === '-1'">
+          <div>
+            <label class="nasip-name">接入服务器:</label>
+            <input type="text" name="nasip" id="nasip" v-model="nasip" placeholder="xxx.xxx.xxx.xxx" @change="setNasipAndIcode" />
+          </div>
+          <div>
+            <label class="icode-name">网络识别码:</label>
+            <input type="text" name="icode" id="icode" v-model="icode" placeholder="xxx" @change="setNasipAndIcode" />
+          </div>
+          <div class="tips">
+            <p>* 接入服务器即为宽带接入的 IP</p>
+            <p>* 网络识别码即为内网 IP 首位</p>
+          </div>
+        </div>
       </div>
     </form>
     <div class="button-group">
@@ -104,13 +119,31 @@
         console.log(localStorage)
       },
       setSchool: function () {
-        let selectSchool = this.schoolGroup[this.schoolNumber]
         localStorage.schoolNumber = this.schoolNumber
-        this.school = localStorage.school = selectSchool.name
-        this.nasip = localStorage.nasip = selectSchool.nasip
-        this.icode = localStorage.icode = selectSchool.icode
+        if (localStorage.schoolNumber !== "-1") {
+          let selectSchool = this.schoolGroup[this.schoolNumber]
+          this.school = localStorage.school = selectSchool.name
+          this.nasip = localStorage.nasip = selectSchool.nasip
+          this.icode = localStorage.icode = selectSchool.icode
+        } else {
+          this.school = localStorage.school = null
+          this.nasip = localStorage.nasip = null
+          this.icode = localStorage.icode = null
+        }
 
-        this.setIpAndMac()
+        if (this.model === "auto") {
+          this.autoIpAndMac()
+        }
+        console.log(localStorage)
+      },
+      setNasipAndIcode: function () {
+        localStorage.nasip = this.nasip
+        localStorage.icode = this.icode
+
+        if (this.model === "auto") {
+          this.autoIpAndMac()
+        }
+        console.log(localStorage)
       }
     }
   }
